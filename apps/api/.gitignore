@@ -3,8 +3,12 @@
 /node_modules
 /build
 
+# Local document storage (development)
+/storage
+
 # NestJS auto-generated files
 src/metadata.ts
+src/metadata.d.ts
 
 # Logs
 logs

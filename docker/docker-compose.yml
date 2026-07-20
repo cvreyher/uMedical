@@ -1,18 +1,42 @@
-version: '3.8'
+name: medikamentenprofil
 
 services:
   postgres:
-    image: bitnami/postgresql:latest
-    container_name: postgres
+    # pgvector-enabled Postgres image (required for embedding columns / HNSW search)
+    image: pgvector/pgvector:pg17
+    container_name: medikamentenprofil-postgres
     restart: unless-stopped
     environment:
-      - POSTGRESQL_USERNAME=postgres
-      - POSTGRESQL_PASSWORD=postgres
-      - POSTGRESQL_DATABASE=nestjs
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nestjs
     ports:
-      - "5432:5432"
+      # Host port 5433 to avoid clashing with other local Postgres instances
+      - '5433:5432'
     volumes:
-      - postgres_data:/bitnami/postgresql
+      - postgres_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d nestjs']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: medikamentenprofil-redis
+    restart: unless-stopped
+    ports:
+      # Host port 6380 to avoid clashing with other local Redis instances
+      - '6380:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   postgres_data:
+  redis_data:

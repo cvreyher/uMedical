@@ -1,7 +1,6 @@
 import createFetchClient from 'openapi-fetch'
 import createClient from 'openapi-react-query'
 
-import { AUTH_WRITE_ROUTES } from '@/lib/auth'
 import { env } from '@/config/env'
 import type { paths } from '@/types/openapi'
 
@@ -51,7 +50,7 @@ export class ApiError extends Error {
 // Fetch Client
 // ============================================================================
 
-// API requests sent directly, proxy.ts handles cookie → bearer header
+// API requests sent directly
 // baseUrl is empty as OpenAPI paths include /api prefix
 export const fetchClient = createFetchClient<paths>({
   baseUrl: '',
@@ -66,43 +65,13 @@ export const fetchClient = createFetchClient<paths>({
 fetchClient.use({
   async onRequest({ request }) {
     if (globalThis.window === undefined) {
-      // Server: rewrite URL + manually add token
-      const { cookies } = await import('next/headers')
-      const cookiesStore = await cookies()
-      const token = cookiesStore.get('access_token')?.value
-
+      // Server: rewrite URL
       const url = new URL(request.url, env.API_UPSTREAM_BASE_URL)
       const newRequest = new Request(url, request)
-      if (token) {
-        newRequest.headers.set('Authorization', `Bearer ${token}`)
-      }
       return newRequest
     }
-    // Client: no processing, use proxy
+    // Client: no processing
     return request
-  },
-})
-
-// Middleware: 401 intercept and auto token refresh (client only)
-fetchClient.use({
-  async onResponse({ response, request }) {
-    // Server doesn't handle 401 refresh
-    if (globalThis.window === undefined) {
-      return response
-    }
-    // On 401 and not auth write route, try refresh token
-    if (response.status === 401 && !AUTH_WRITE_ROUTES.some((route) => request.url.includes(route))) {
-      const refreshRes = await fetch('/api/auth/refresh', {
-        method: 'POST',
-        credentials: 'include',
-      })
-
-      if (refreshRes.ok) {
-        // Refresh success, retry original request
-        return fetch(request.clone())
-      }
-    }
-    return response
   },
 })
 

@@ -22,9 +22,34 @@
           "dtoFileNameSuffix": [".dto.ts", ".command.ts", ".query.ts"],
           "controllerFileNameSuffix": [".controller.ts"],
           "dtoKeyOfComment": "description",
-          "controllerKeyOfComment": "summary"
+          "controllerKeyOfComment": "summary",
+          "persistSchemaPath": true
         }
       }
     ]
+  },
+  "watchOptions": {
+    "watch": ["src"],
+    "ignore": [
+      "**/*.spec.ts",
+      "dist",
+      "node_modules",
+      "coverage",
+      "*.log",
+      "*.pid",
+      ".temp",
+      ".tmp",
+      "src/metadata.ts",
+      "src/metadata.d.ts",
+      "metadata.ts",
+      "metadata.d.ts"
+    ],
+    "usePolling": false,
+    "atomic": false,
+    "awaitWriteFinish": {
+      "stabilityThreshold": 500,
+      "pollInterval": 100
+    },
+    "ignoreInitial": true
   }
 }

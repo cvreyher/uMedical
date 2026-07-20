@@ -1,11 +1,12 @@
-import { Nextdotjs as NextjsIcon } from '@workspace/icons'
 import Link from 'next/link'
+import { PillIcon} from 'lucide-react'
 
 const Logo = () => {
   return (
-    <div className="flex items-center gap-2">
-      <Link href="/">
-        <NextjsIcon className="w-6 h-6 fill-black dark:fill-white" />
+    <div className="flex items-center gap-2 ">
+      <Link href="/" className="font-bold flex items-center gap-2">
+        <PillIcon />
+        <div>uMedical</div>
       </Link>
     </div>
   )

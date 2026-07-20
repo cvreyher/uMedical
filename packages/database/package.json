@@ -32,7 +32,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:dev": "tsx scripts/seed-dev.ts",
+    "db:fix-constraints": "tsx scripts/fix-pvigilance-constraints.ts"
   },
   "dependencies": {
     "drizzle-orm": "0.44.7",

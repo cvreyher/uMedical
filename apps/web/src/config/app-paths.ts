@@ -2,14 +2,25 @@ export const appPaths = {
   home: {
     getHref: () => '/',
   },
-  auth: {
-    register: {
-      getHref: (redirectTo?: string | null) =>
-        `/register${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+  medikamente: {
+    getHref: () => '/medikamente',
+    detail: {
+      getHref: (slug: string) => `/medikamente/${slug}`,
     },
-    login: {
-      getHref: (redirectTo?: string | null) =>
-        `/login${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+  },
+  wirkstoffe: {
+    getHref: () => '/wirkstoffe',
+    detail: {
+      getHref: (slug: string) => `/wirkstoffe/${slug}`,
     },
+  },
+  unternehmen: {
+    getHref: () => '/unternehmen',
+    detail: {
+      getHref: (slug: string) => `/unternehmen/${slug}`,
+    },
+  },
+  statistiken: {
+    getHref: () => '/statistiken',
   },
 } as const

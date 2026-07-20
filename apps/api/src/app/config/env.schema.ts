@@ -21,7 +21,7 @@ export const envSchema = z.object({
   // Database connection
   DATABASE_URL: z
     .url()
-    .default('postgres://postgres:postgres@localhost:5432/vsa_m_nest'),
+    .default('postgres://postgres:postgres@localhost:5433/nestjs'),
 
   // Database pool config
   DB_POOL_MAX: z
@@ -100,6 +100,24 @@ export const envSchema = z.object({
   // Swagger auto-login (dev only)
   SWAGGER_TEST_EMAIL: z.email().optional(),
   SWAGGER_TEST_PASSWORD: z.string().optional(),
+
+  // Background live data fetching (cron jobs calling external APIs: EMA, FDA,
+  // MHRA, RSS feeds, OpenAI embeddings). Disable in local dev to avoid rate
+  // limits and work purely with seeded data (pnpm db:seed:dev). Manual admin
+  // endpoints (e.g. POST /ema/import) still work when disabled.
+  LIVE_FETCH_ENABLED: z
+    .string()
+    .default('true')
+    .transform((value) => value === 'true'),
+
+  // OpenAI API (for RAG embeddings)
+  OPENAI_API_KEY: z.string().optional(),
+
+  // Cloudflare R2 Storage (for document storage)
+  R2_ACCOUNT_ID: z.string().optional(),
+  R2_ACCESS_KEY_ID: z.string().optional(),
+  R2_SECRET_ACCESS_KEY: z.string().optional(),
+  R2_BUCKET_NAME: z.string().default('medikamentenprofil-documents'),
 })
 
 /**

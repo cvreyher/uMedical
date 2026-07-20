@@ -1,15 +1,8 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query'
-
 import { AppProvider } from '@/app/provide'
 
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import '@workspace/ui/globals.css'
-import { $api } from '@/lib/fetch-client'
 import { Toaster } from '@workspace/ui/components/ui/sonner'
 
 export const viewport: Viewport = {
@@ -19,29 +12,26 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s · Starter',
-    default: 'Starter',
+    template: '%s | uMedical',
+    default: 'uMedical - Die universelle, offene Sicht auf EU-Medikamentendaten',
   },
-  description: 'Starter template',
+  description: 'Kostenlose, transparente Medikamentensuche mit Daten der EMA. Finden Sie Informationen zu Wirkstoffen, Zulassungen und Herstellern europaweit zugelassener Arzneimittel.',
+  keywords: ['Medikamente', 'Arzneimittel', 'Wirkstoffe', 'EMA', 'Europa', 'Zulassung', 'Open Source', 'Suchmaschine', 'Pharmaunternehmen'],
+  authors: [{ name: 'uMedical' }],
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    siteName: 'uMedical',
+  },
 }
 
 const Layout = async ({ children }: { children: ReactNode }) => {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery($api.queryOptions('get', '/api/auth/session'))
-
-  const dehydratedState = dehydrate(queryClient)
-
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className="antialiased"
-      >
+    <html lang="de" suppressHydrationWarning>
+      <body className="antialiased">
         <AppProvider>
-          <HydrationBoundary state={dehydratedState}>
-            {children}
-            <Toaster />
-          </HydrationBoundary>
+          {children}
+          <Toaster />
         </AppProvider>
       </body>
     </html>
@@ -49,7 +39,3 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 }
 
 export default Layout
-
-// Disable pre-rendering, force dynamic execution on each request
-// User data depends on cookies, must be fetched at request time
-export const dynamic = 'force-dynamic'

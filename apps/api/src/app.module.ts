@@ -20,8 +20,9 @@ import { LoggerModule } from '@/app/logger/logger.module'
 import { ApiVersionMiddleware } from '@/app/middleware/api-version.middleware'
 import { ETagMiddleware } from '@/app/middleware/etag.middleware'
 import { SwaggerDevController } from '@/app/swagger/swagger-dev.controller'
-import { AuthModule } from '@/modules/auth/auth.module'
-import { TodoModule } from '@/modules/todo/todo.module'
+import { EmaModule } from '@/modules/ema/ema.module'
+import { PvigilanceModule } from '@/modules/pvigilance/pvigilance.module'
+import { RagModule } from '@/modules/rag/rag.module'
 import { DrizzleModule } from '@/shared-kernel/infrastructure/db/db.module'
 import { DomainEventsModule } from '@/shared-kernel/infrastructure/events/domain-events.module'
 
@@ -68,8 +69,9 @@ import type { NestModule, MiddlewareConsumer } from '@nestjs/common'
     ]),
     HealthModule, // Health check module
     // Business modules
-    TodoModule, // Todo module (anemic model example)
-    AuthModule, // Auth module (authentication + DDD example)
+    EmaModule, // EMA data import
+    PvigilanceModule, // Multi-source pharmacovigilance events
+    RagModule, // RAG search system
   ],
   controllers: [
     // Dev helper controller (dev only)
@@ -95,11 +97,12 @@ import type { NestModule, MiddlewareConsumer } from '@nestjs/common'
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // Register global middleware
+    // Use '{*path}' for wildcard routes (path-to-regexp v8+ syntax)
     consumer
       .apply(
         ApiVersionMiddleware, // API versioning (must be before ETag)
         ETagMiddleware, // ETag and 304 Not Modified support
       )
-      .forRoutes('{*path}') // Apply to all routes
+      .forRoutes('{*path}') // Apply to all routes (new path-to-regexp syntax)
   }
 }
