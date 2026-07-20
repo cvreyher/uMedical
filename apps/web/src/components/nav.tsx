@@ -13,10 +13,10 @@ import {
 } from '@workspace/ui/components/ui/sheet'
 
 const navLinks = [
-  { href: '/medikamente', label: 'Medikamente' },
-  { href: '/wirkstoffe', label: 'Wirkstoffe' },
-  { href: '/unternehmen', label: 'Unternehmen' },
-  { href: '/statistiken', label: 'Statistiken' },
+  { href: '/medikamente', label: 'Medicines' },
+  { href: '/wirkstoffe', label: 'Substances' },
+  { href: '/unternehmen', label: 'Companies' },
+  { href: '/statistiken', label: 'Statistics' },
 ]
 
 const Nav = () => {

@@ -39,20 +39,20 @@ import {
 const features = [
   {
     icon: <PillIcon className="w-6 h-6" />,
-    title: 'Medikamente',
-    description: 'Alle EU-zugelassenen Arzneimittel',
+    title: 'Medicines',
+    description: 'All EU-authorised medicinal products',
     href: '/medikamente',
   },
   {
     icon: <FlaskConicalIcon className="w-6 h-6" />,
-    title: 'Wirkstoffe',
-    description: 'Aktive Substanzen (INN)',
+    title: 'Substances',
+    description: 'Active substances (INN)',
     href: '/wirkstoffe',
   },
   {
     icon: <BuildingIcon className="w-6 h-6" />,
-    title: 'Unternehmen',
-    description: 'Zulassungsinhaber & Hersteller',
+    title: 'Companies',
+    description: 'Marketing authorisation holders & manufacturers',
     href: '/unternehmen',
   },
 ]
@@ -78,24 +78,24 @@ async function StatsDisplay() {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
         <div>
-          <p className="text-4xl font-bold text-primary mb-2">{stats.total.toLocaleString('de-DE')}</p>
-          <p className="text-sm text-muted-foreground">Medikamente</p>
+          <p className="text-4xl font-bold text-primary mb-2">{stats.total.toLocaleString('en-GB')}</p>
+          <p className="text-sm text-muted-foreground">Medicines</p>
         </div>
         <div>
           <p className="text-4xl font-bold text-primary mb-2">
-            {(stats.byStatus?.['Authorised'] || 0).toLocaleString('de-DE')}
+            {(stats.byStatus?.['Authorised'] || 0).toLocaleString('en-GB')}
           </p>
-          <p className="text-sm text-muted-foreground">Zugelassen</p>
+          <p className="text-sm text-muted-foreground">Authorised</p>
         </div>
         <div>
           <p className="text-4xl font-bold text-primary mb-2">
-            {stats.orphanMedicines.toLocaleString('de-DE')}
+            {stats.orphanMedicines.toLocaleString('en-GB')}
           </p>
-          <p className="text-sm text-muted-foreground">Orphan-Arzneimittel</p>
+          <p className="text-sm text-muted-foreground">Orphan medicines</p>
         </div>
         <div>
-          <p className="text-4xl font-bold text-primary mb-2">{eventStats.total.toLocaleString('de-DE')}</p>
-          <p className="text-sm text-muted-foreground">Timeline Events</p>
+          <p className="text-4xl font-bold text-primary mb-2">{eventStats.total.toLocaleString('en-GB')}</p>
+          <p className="text-sm text-muted-foreground">Timeline events</p>
         </div>
       </div>
     )
@@ -103,16 +103,16 @@ async function StatsDisplay() {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
         <div>
-          <p className="text-4xl font-bold text-primary mb-2">2.600+</p>
-          <p className="text-sm text-muted-foreground">Medikamente</p>
+          <p className="text-4xl font-bold text-primary mb-2">2,600+</p>
+          <p className="text-sm text-muted-foreground">Medicines</p>
         </div>
         <div>
-          <p className="text-4xl font-bold text-primary mb-2">1.500+</p>
-          <p className="text-sm text-muted-foreground">Zugelassen</p>
+          <p className="text-4xl font-bold text-primary mb-2">1,500+</p>
+          <p className="text-sm text-muted-foreground">Authorised</p>
         </div>
         <div>
           <p className="text-4xl font-bold text-primary mb-2">200+</p>
-          <p className="text-sm text-muted-foreground">Orphan-Arzneimittel</p>
+          <p className="text-sm text-muted-foreground">Orphan medicines</p>
         </div>
       </div>
     )

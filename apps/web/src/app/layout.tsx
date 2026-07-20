@@ -25,21 +25,21 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     template: '%s | uMedical',
-    default: 'uMedical - Die universelle, offene Sicht auf EU-Medikamentendaten',
+    default: 'uMedical — Your Medical Data Lens',
   },
-  description: 'Kostenlose, transparente Medikamentensuche mit Daten der EMA. Finden Sie Informationen zu Wirkstoffen, Zulassungen und Herstellern europaweit zugelassener Arzneimittel.',
-  keywords: ['Medikamente', 'Arzneimittel', 'Wirkstoffe', 'EMA', 'Europa', 'Zulassung', 'Open Source', 'Suchmaschine', 'Pharmaunternehmen'],
+  description: 'universal · unified · understanding — a free, open platform for EU medicines data. Explore active substances, authorisations, and marketing authorisation holders of centrally approved medicines, based on official EMA data.',
+  keywords: ['medicines', 'pharmaceuticals', 'active substances', 'EMA', 'Europe', 'marketing authorisation', 'open source', 'search engine', 'pharmaceutical companies', 'uMedical'],
   authors: [{ name: 'uMedical' }],
   openGraph: {
     type: 'website',
-    locale: 'de_DE',
+    locale: 'en_US',
     siteName: 'uMedical',
   },
 }
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="de" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <AppProvider>
           {children}
