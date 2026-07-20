@@ -35,6 +35,10 @@ import {
   ChartSkeleton,
 } from '@/components/charts'
 
+// Render per request so the data always comes live from the API (our database)
+// instead of being frozen into static HTML at build time.
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Statistiken',
   description: 'Umfassende Statistiken und Analysen zu EU-zugelassenen Arzneimitteln.',

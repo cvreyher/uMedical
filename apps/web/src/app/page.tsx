@@ -26,6 +26,12 @@ import {
   PieChartIcon,
 } from 'lucide-react'
 import { api } from '@/lib/api'
+
+// Render per request: all numbers/charts on this page come from the API (our
+// database). Without this the page is statically prerendered at build time and
+// whatever the API returned during `next build` (or an error fallback, if the
+// API was down) is frozen into the HTML.
+export const dynamic = 'force-dynamic'
 import {
   StatusBarChart,
   CategoryPieChart,
@@ -100,21 +106,11 @@ async function StatsDisplay() {
       </div>
     )
   } catch {
+    // No fabricated numbers: if the API is unreachable, say so.
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-        <div>
-          <p className="text-4xl font-bold text-primary mb-2">2,600+</p>
-          <p className="text-sm text-muted-foreground">Medicines</p>
-        </div>
-        <div>
-          <p className="text-4xl font-bold text-primary mb-2">1,500+</p>
-          <p className="text-sm text-muted-foreground">Authorised</p>
-        </div>
-        <div>
-          <p className="text-4xl font-bold text-primary mb-2">200+</p>
-          <p className="text-sm text-muted-foreground">Orphan medicines</p>
-        </div>
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-4">
+        Statistics could not be loaded - API unreachable.
+      </p>
     )
   }
 }
@@ -204,7 +200,7 @@ async function RecentEventsDisplay() {
   } catch {
     return (
       <p className="text-sm text-muted-foreground text-center py-12">
-        Events werden geladen...
+        Events could not be loaded - API unreachable.
       </p>
     )
   }
@@ -253,15 +249,9 @@ async function ChartsDisplay() {
     )
   } catch {
     return (
-      <div className="grid gap-12 lg:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="space-y-6">
-            <Skeleton className="h-6 w-32" />
-            <Separator />
-            <ChartSkeleton />
-          </div>
-        ))}
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-12">
+        Charts could not be loaded - API unreachable.
+      </p>
     )
   }
 }
@@ -287,11 +277,9 @@ async function ApprovalsPerYearChart() {
     )
   } catch {
     return (
-      <div className="space-y-6">
-        <Skeleton className="h-6 w-48" />
-        <Separator />
-        <ChartSkeleton height="400px" />
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-12">
+        Approvals statistics could not be loaded - API unreachable.
+      </p>
     )
   }
 }
@@ -348,14 +336,9 @@ async function HighlightsSection() {
     )
   } catch {
     return (
-      <div className="grid gap-8 lg:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="p-6 rounded-xl border bg-card">
-            <Skeleton className="h-6 w-32 mb-4" />
-            <ChartSkeleton height="250px" />
-          </div>
-        ))}
-      </div>
+      <p className="text-sm text-muted-foreground text-center py-12">
+        Highlights could not be loaded - API unreachable.
+      </p>
     )
   }
 }
