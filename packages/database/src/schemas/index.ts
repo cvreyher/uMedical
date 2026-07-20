@@ -1,4 +1,4 @@
-// MedikamentenProfil schemas - Comprehensive EMA Data Model
+// uMedical schemas - Comprehensive EMA Data Model
 
 // Layer 1: Raw Sources (Change Detection)
 export * from './ema-sources.schema.js'

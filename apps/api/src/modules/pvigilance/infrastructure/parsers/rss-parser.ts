@@ -29,7 +29,7 @@ export class RssParser {
       // Fetch the feed
       const response = await fetch(feedUrl, {
         headers: {
-          'User-Agent': 'MedikamentenProfil/1.0 (+https://medikamentenprofil.de)',
+          'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
           'Accept': 'application/rss+xml, application/xml, text/xml, */*',
         },
         signal: AbortSignal.timeout(30000), // 30 second timeout

@@ -11,8 +11,8 @@ import type { OpenAPIObject, SwaggerCustomOptions } from '@nestjs/swagger'
  * Swagger base config
  */
 export const swaggerConfig = {
-  title: 'MedikamentenProfil API',
-  description: `# MedikamentenProfil API
+  title: 'uMedical API',
+  description: `# uMedical API
 
 Comprehensive pharmaceutical data platform aggregating regulatory information from multiple authorities.
 
@@ -61,7 +61,7 @@ export const swaggerCustomOptions: SwaggerCustomOptions = {
     tagsSorter: 'alpha',
     operationsSorter: 'alpha',
   },
-  customSiteTitle: 'MedikamentenProfil API',
+  customSiteTitle: 'uMedical API',
   customCss: `
     .swagger-ui .topbar { display: none }
     .swagger-ui .info { margin: 30px 0 }
@@ -85,7 +85,7 @@ export const scalarConfig = {
   hideDownloadButton: false,
   darkMode: true,
   metaData: {
-    title: 'MedikamentenProfil API',
+    title: 'uMedical API',
     description: 'Pharmaceutical data platform API documentation',
   },
   favicon: '/favicon.ico',
@@ -233,12 +233,13 @@ export async function setupSwagger(app: INestApplication): Promise<void> {
     .setTitle(swaggerConfig.title)
     .setDescription(swaggerConfig.description)
     .setVersion(swaggerConfig.version)
-    .setContact('MedikamentenProfil', 'https://medikamentenprofil.de', 'support@medikamentenprofil.de')
+    .setContact('uMedical', 'https://github.com/cvreyher/uMedical', '')
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
     .addServer('http://localhost:3001', 'Local Development')
-    .addServer('https://api.dev.medikamentenprofil.de', 'Development')
+    // TODO: replace with the real domains once decided
+    .addServer('https://api.dev.umedical.example', 'Development')
     .addServer('http://localhost:3000', 'Development')
-    .addServer('https://api.medikamentenprofil.de', 'Production')
+    .addServer('https://api.umedical.example', 'Production')
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',

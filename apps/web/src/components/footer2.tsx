@@ -47,7 +47,7 @@ const Footer2 = ({
       ],
     },
   ],
-  copyright = `${new Date().getFullYear()} MedikamentenProfil.de - Open Source Projekt`,
+  copyright = `${new Date().getFullYear()} uMedical - Open Source Projekt`,
   bottomLinks = [
     { text: "Impressum", url: "/impressum" },
     { text: "Datenschutz", url: "/datenschutz" },
@@ -60,7 +60,7 @@ const Footer2 = ({
           <div className="col-span-2 mb-8 lg:mb-0">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <PillIcon className="w-6 h-6" />
-              <span className="font-bold text-lg">MedikamentenProfil.de</span>
+              <span className="font-bold text-lg">uMedical</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
               {tagline}

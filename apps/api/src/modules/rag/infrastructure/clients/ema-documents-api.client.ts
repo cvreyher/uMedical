@@ -50,7 +50,7 @@ export class EmaDocumentsApiClient {
   private readonly EMA_NON_EPAR_DOCUMENTS_URL =
     'https://www.ema.europa.eu/en/documents/report/documents-output-non_epar_documents_json-report_en.json'
 
-  private readonly USER_AGENT = 'MedikamentenProfil/1.0 (https://medikamentenprofil.de)'
+  private readonly USER_AGENT = 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)'
 
   /**
    * Fetch EPAR documents metadata from EMA

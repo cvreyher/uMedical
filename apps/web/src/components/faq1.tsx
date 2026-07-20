@@ -35,9 +35,9 @@ const defaultItems: FaqItem[] = [
   },
   {
     id: "faq-3",
-    question: "Ist MedikamentenProfil.de kostenlos?",
+    question: "Ist uMedical kostenlos?",
     answer:
-      "Ja, MedikamentenProfil.de ist vollständig kostenlos und wird es auch bleiben. Als Open-Source Projekt ist unser gesamter Quellcode öffentlich auf GitHub verfügbar.",
+      "Ja, uMedical ist vollständig kostenlos und wird es auch bleiben. Als Open-Source Projekt ist unser gesamter Quellcode öffentlich auf GitHub verfügbar.",
   },
   {
     id: "faq-4",

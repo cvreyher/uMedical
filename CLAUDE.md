@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-MedikamentenProfil.de — a German pharmaceutical data platform that ingests EMA (European Medicines Agency) data, multi-source pharmacovigilance feeds (EMA/FDA/MHRA), and documents (SmPC/EPAR PDFs) into Postgres, and exposes them via a typed API with hybrid RAG search (pgvector + full-text). The repo started from the oNo500/nestjs-boilerplate. The project vision (architecture ranking, hybrid search design, provenance principles) lives in `docker/vision.md` (German).
+uMedical (formerly MedikamentenProfil.de, repo: https://github.com/cvreyher/uMedical) — a German pharmaceutical data platform that ingests EMA (European Medicines Agency) data, multi-source pharmacovigilance feeds (EMA/FDA/MHRA), and documents (SmPC/EPAR PDFs) into Postgres, and exposes them via a typed API with hybrid RAG search (pgvector + full-text). The repo started from the oNo500/nestjs-boilerplate. The project vision (architecture ranking, hybrid search design, provenance principles) lives in `docker/vision.md` (German).
 
 Turborepo + pnpm monorepo (Node >= 22.18, pnpm 10):
 - `apps/api` — NestJS 11 backend (port 3000)
@@ -83,4 +83,4 @@ Next.js App Router with German route names: `medikamente`, `wirkstoffe` (substan
 
 ## Specialized agents
 
-Project-specific agents are configured and should be used for their domains: `medikamentenprofil-architect` (MVP/architecture alignment), `data-structure-expert` (schema design), `ema-database-expert` (EMA data access), `pharma-vigilance-expert` (PV systems, FAERS/EudraVigilance).
+Project-specific agents are configured and should be used for their domains: `umedical-architect` (MVP/architecture alignment), `data-structure-expert` (schema design), `ema-database-expert` (EMA data access), `pharma-vigilance-expert` (PV systems, FAERS/EudraVigilance).

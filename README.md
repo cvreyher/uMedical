@@ -1,8 +1,26 @@
-# uMedical — MedikamentenProfil.de
+# uMedical
 
-A German pharmaceutical data platform that aggregates official regulatory data
-about medicines in the EU — and makes it searchable, browsable, and
-understandable.
+> **u**niversal · **u**nified · **u**nderstanding — *Your Medical Data Lens*
+
+**https://github.com/cvreyher/uMedical**
+
+A pharmaceutical data platform that aggregates official regulatory data about
+medicines in the EU — and makes it searchable, browsable, and understandable.
+Formerly known as *MedikamentenProfil.de*.
+
+The name is the mission:
+
+- **Universal Medical** — a universal, open view of EU medicines data: from
+  authorisation over active substances to company profiles, and later beyond
+  medicines (clinical trials, devices)
+- **Unified Medical** — a unified, consolidated data layer for Europe: all
+  regulatory medicine information from one source, merged from many EMA
+  artefacts into timelines, statuses, and statistics
+- **Understanding Medical** — transparency and explainability: making complex
+  regulatory information understandable for professionals, patients, and
+  developers
+- **Your Medical Data Lens** — a personalised view: dashboards, saved searches,
+  and notifications for the substances and companies you care about (roadmap)
 
 The platform ingests data from the **European Medicines Agency (EMA)** and
 pharmacovigilance sources across multiple authorities (**FDA**, **MHRA**,

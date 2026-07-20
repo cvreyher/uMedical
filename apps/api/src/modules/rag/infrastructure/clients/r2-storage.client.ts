@@ -30,7 +30,7 @@ export interface UploadOptions {
  * - R2_ACCOUNT_ID: Cloudflare account ID
  * - R2_ACCESS_KEY_ID: R2 access key
  * - R2_SECRET_ACCESS_KEY: R2 secret key
- * - R2_BUCKET_NAME: Bucket name (default: medikamentenprofil-documents)
+ * - R2_BUCKET_NAME: Bucket name (default: umedical-documents)
  */
 @Injectable()
 export class R2StorageClient implements OnModuleInit {
@@ -42,7 +42,7 @@ export class R2StorageClient implements OnModuleInit {
   private readonly useLocalStorage: boolean
 
   constructor(private readonly configService: ConfigService) {
-    this.bucketName = this.configService.get('R2_BUCKET_NAME', 'medikamentenprofil-documents')
+    this.bucketName = this.configService.get('R2_BUCKET_NAME', 'umedical-documents')
     this.localStoragePath = path.resolve(process.cwd(), 'storage')
 
     const accountId = this.configService.get('R2_ACCOUNT_ID', '')

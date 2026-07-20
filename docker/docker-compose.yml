@@ -1,10 +1,10 @@
-name: medikamentenprofil
+name: umedical
 
 services:
   postgres:
     # pgvector-enabled Postgres image (required for embedding columns / HNSW search)
     image: pgvector/pgvector:pg17
-    container_name: medikamentenprofil-postgres
+    container_name: umedical-postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=postgres
@@ -24,7 +24,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: medikamentenprofil-redis
+    container_name: umedical-redis
     restart: unless-stopped
     ports:
       # Host port 6380 to avoid clashing with other local Redis instances

@@ -77,7 +77,7 @@ export class FdaApiParser {
 
       const response = await fetch(url.toString(), {
         headers: {
-          'User-Agent': 'MedikamentenProfil/1.0 (+https://medikamentenprofil.de)',
+          'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
           'Accept': 'application/json',
         },
         signal: AbortSignal.timeout(60000), // 60 second timeout

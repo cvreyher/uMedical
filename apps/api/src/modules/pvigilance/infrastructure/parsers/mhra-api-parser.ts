@@ -64,7 +64,7 @@ export class MhraApiParser {
 
       const response = await fetch(url.toString(), {
         headers: {
-          'User-Agent': 'MedikamentenProfil/1.0 (+https://medikamentenprofil.de)',
+          'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
           'Accept': 'application/json',
         },
         signal: AbortSignal.timeout(30000),

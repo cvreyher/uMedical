@@ -117,7 +117,7 @@ export const envSchema = z.object({
   R2_ACCOUNT_ID: z.string().optional(),
   R2_ACCESS_KEY_ID: z.string().optional(),
   R2_SECRET_ACCESS_KEY: z.string().optional(),
-  R2_BUCKET_NAME: z.string().default('medikamentenprofil-documents'),
+  R2_BUCKET_NAME: z.string().default('umedical-documents'),
 })
 
 /**

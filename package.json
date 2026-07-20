@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate",
+  "name": "umedical",
   "type": "module",
   "scripts": {
     "dev": "turbo run dev",
