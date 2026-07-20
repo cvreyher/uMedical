@@ -51,6 +51,7 @@ const Footer2 = ({
   bottomLinks = [
     { text: "Impressum", url: "/impressum" },
     { text: "Datenschutz", url: "/datenschutz" },
+    { text: "Kontakt", url: "mailto:info@umedical.store" },
   ],
 }: Footer2Props) => {
   return (

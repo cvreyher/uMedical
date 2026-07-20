@@ -413,29 +413,21 @@ export class EmaImportExtendedService {
   }
 
   private async linkProductCompany(productId: number, companyId: number): Promise<void> {
-    // Check if link exists (using medicinal_products_extended ID)
-    // For now, we'll use a simple insert with conflict handling
-    try {
-      await this.db.insert(productCompanies).values({
-        productId,
-        companyId,
-        role: 'mah',
-      }).onConflictDoNothing()
-    } catch {
-      // Ignore duplicate key errors
-    }
+    // productId is a medicinal_products_extended ID - matches the FK on product_companies.
+    // Duplicates are handled by onConflictDoNothing; real errors must surface.
+    await this.db.insert(productCompanies).values({
+      productId,
+      companyId,
+      role: 'mah',
+    }).onConflictDoNothing()
   }
 
   private async linkProductSubstance(productId: number, substanceId: number): Promise<void> {
-    try {
-      await this.db.insert(productSubstances).values({
-        productId,
-        substanceId,
-        isActive: true,
-      }).onConflictDoNothing()
-    } catch {
-      // Ignore duplicate key errors
-    }
+    await this.db.insert(productSubstances).values({
+      productId,
+      substanceId,
+      isActive: true,
+    }).onConflictDoNothing()
   }
 
   private slugify(text: string): string {

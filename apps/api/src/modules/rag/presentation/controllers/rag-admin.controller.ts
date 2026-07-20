@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, HttpCode, HttpStatus, Inject, Query, Param, ParseIntPipe } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam } from '@nestjs/swagger'
+import { Controller, Get, Post, Body, HttpCode, HttpStatus, Inject, Query, Param, ParseIntPipe, UseGuards } from '@nestjs/common'
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam, ApiSecurity } from '@nestjs/swagger'
+
+import { ApiKeyGuard } from '@/app/guards/api-key.guard'
 
 import { ChunkingService } from '../../application/services/chunking.service'
 import { DocumentImportService } from '../../application/services/document-import.service'
@@ -39,6 +41,8 @@ import {
  */
 @Controller('admin/rag')
 @ApiTags('Admin - RAG')
+@ApiSecurity('admin-api-key')
+@UseGuards(ApiKeyGuard)
 export class RagAdminController {
   constructor(
     private readonly documentImportService: DocumentImportService,

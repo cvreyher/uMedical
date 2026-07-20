@@ -1,5 +1,7 @@
-import { Controller, Post, Get, HttpCode, HttpStatus, Logger } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { Controller, Post, Get, HttpCode, HttpStatus, Logger, UseGuards } from '@nestjs/common'
+import { ApiTags, ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger'
+
+import { ApiKeyGuard } from '@/app/guards/api-key.guard'
 
 import { EmaImportService } from '../../application/services/ema-import.service'
 import { EmaImportExtendedService } from '../../application/services/ema-import-extended.service'
@@ -11,9 +13,11 @@ import type { ShortagesImportResult } from '../../application/services/ema-short
 
 /**
  * Admin controller for EMA data import operations
- * TODO: Add authentication guard for production
+ * Protected by ADMIN_API_KEY (x-api-key header)
  */
 @ApiTags('Admin - EMA Import')
+@ApiSecurity('admin-api-key')
+@UseGuards(ApiKeyGuard)
 @Controller('admin/ema')
 export class EmaImportController {
   private readonly logger = new Logger(EmaImportController.name)

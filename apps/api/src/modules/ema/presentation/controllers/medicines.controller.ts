@@ -1,5 +1,5 @@
-import { Controller, Get, Param, Query, Inject, NotFoundException } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam } from '@nestjs/swagger'
+import { Controller, Get, Param, Query, Inject, NotFoundException, UseGuards } from '@nestjs/common'
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam, ApiSecurity } from '@nestjs/swagger'
 import {
   medicinalProductsExtended,
   substances,
@@ -12,6 +12,7 @@ import {
 } from '@workspace/database'
 import { eq, desc, ilike, or, count, and, gte, lte, sql } from 'drizzle-orm'
 
+import { ApiKeyGuard } from '@/app/guards/api-key.guard'
 import { DB_TOKEN } from '@/shared-kernel/infrastructure/db/db.port'
 
 import type { DrizzleDb } from '@/shared-kernel/infrastructure/db/db.port'
@@ -564,6 +565,8 @@ export class CompaniesController {
  * Admin API: Import Management
  */
 @ApiTags('Admin - Import Logs')
+@ApiSecurity('admin-api-key')
+@UseGuards(ApiKeyGuard)
 @Controller('admin/imports')
 export class ImportLogsController {
   constructor(@Inject(DB_TOKEN) private readonly db: DrizzleDb) {}
@@ -643,6 +646,8 @@ export class ImportLogsController {
  * Admin API: Data Sources
  */
 @ApiTags('Admin - Data Sources')
+@ApiSecurity('admin-api-key')
+@UseGuards(ApiKeyGuard)
 @Controller('admin/sources')
 export class EmaSourcesController {
   constructor(@Inject(DB_TOKEN) private readonly db: DrizzleDb) {}

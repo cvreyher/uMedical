@@ -16,7 +16,7 @@ import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core' // Inline s
 import pg from 'pg'
 
 // Load environment variables
-config()
+config({ path: [".env", "../../.env"], quiet: true })
 
 const usersTable = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),

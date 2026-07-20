@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Body, Query, HttpCode, HttpStatus, Param } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam } from '@nestjs/swagger'
+import { Controller, Get, Post, Body, Query, HttpCode, HttpStatus, Param, UseGuards } from '@nestjs/common'
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam, ApiSecurity } from '@nestjs/swagger'
+
+import { ApiKeyGuard } from '@/app/guards/api-key.guard'
 
 import { EpiDownloadService } from '../../application/services/epi-download.service'
 import { EPI_LANGUAGES, type EpiLanguage } from '../../infrastructure/clients/epi-api.client'
@@ -149,6 +151,8 @@ export class EpiController {
   }
 
   @Post('download')
+  @UseGuards(ApiKeyGuard)
+  @ApiSecurity('admin-api-key')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Download ePI for a product',
@@ -190,6 +194,8 @@ Downloading multiple languages will take some time.
   }
 
   @Post('download/:productSlug')
+  @UseGuards(ApiKeyGuard)
+  @ApiSecurity('admin-api-key')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Download ePI for a product (simple)',

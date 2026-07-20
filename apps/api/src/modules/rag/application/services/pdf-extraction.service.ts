@@ -32,7 +32,7 @@ interface PdfParseResult {
 @Injectable()
 export class PdfExtractionService {
   private readonly logger = new Logger(PdfExtractionService.name)
-  private readonly USER_AGENT = 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)'
+  private readonly USER_AGENT = 'uMedical/1.0 (+https://umedical.store; info@umedical.store)'
   private readonly RATE_LIMIT_MS = 1000 // 1 second between requests
 
   constructor(

@@ -101,6 +101,14 @@ export const envSchema = z.object({
   SWAGGER_TEST_EMAIL: z.email().optional(),
   SWAGGER_TEST_PASSWORD: z.string().optional(),
 
+  // Admin API key: protects admin endpoints (imports, feeds, RAG jobs) via the
+  // x-api-key header. Unset: admin endpoints are open in development but
+  // DISABLED in production.
+  ADMIN_API_KEY: z
+    .string()
+    .min(16, { message: 'ADMIN_API_KEY must be at least 16 characters' })
+    .optional(),
+
   // Background live data fetching (cron jobs calling external APIs: EMA, FDA,
   // MHRA, RSS feeds, OpenAI embeddings). Disable in local dev to avoid rate
   // limits and work purely with seeded data (pnpm db:seed:dev). Manual admin

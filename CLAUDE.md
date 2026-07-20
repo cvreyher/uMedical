@@ -53,9 +53,9 @@ pnpm db:studio
 pnpm db:seed         # tsx scripts/seed.ts
 ```
 
-Env files: `apps/api/.env`, `apps/web/.env`, `packages/database/.env` (each has `.env.example`). `DATABASE_URL` is required in both api and database packages. `OPENAI_API_KEY` (embeddings) and `R2_*` (Cloudflare R2 document storage) are optional — related features degrade without them. Env vars are validated with Zod in `apps/api/src/app/config/env.schema.ts`; add new vars there.
+Env config: a **single root `.env`** (from root `.env.example`) is shared by all packages — the API loads it via `ConfigModule.envFilePath`, the web app via `next.config.ts` (dotenv), and the database package via `drizzle.config.ts`/scripts. A package-local `.env` still overrides if present. `OPENAI_API_KEY` (embeddings) and `R2_*` (Cloudflare R2 document storage) are optional — related features degrade without them. Env vars are validated with Zod in `apps/api/src/app/config/env.schema.ts`; add new vars there and in root `.env.example`.
 
-**`LIVE_FETCH_ENABLED`** (apps/api/.env, default `false` in local dev): kill switch for all background cron jobs that call external APIs — the pvigilance feed scheduler (`feed-scheduler.service.ts`) and the RAG job processor (`job-processor.service.ts`). Keep it `false` during development to avoid rate limits and work with `pnpm db:seed:dev` sample data; manual admin endpoints still work, but queued jobs only process while it's `true`.
+**`LIVE_FETCH_ENABLED`** (root .env, default `false` in local dev): kill switch for all background cron jobs that call external APIs — the pvigilance feed scheduler (`feed-scheduler.service.ts`) and the RAG job processor (`job-processor.service.ts`). Keep it `false` during development to avoid rate limits and work with `pnpm db:seed:dev` sample data; manual admin endpoints still work, but queued jobs only process while it's `true`.
 
 ## Architecture
 

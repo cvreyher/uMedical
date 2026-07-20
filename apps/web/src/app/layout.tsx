@@ -1,9 +1,21 @@
+import { Geist, Geist_Mono } from 'next/font/google'
+
 import { AppProvider } from '@/app/provide'
 
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import '@workspace/ui/globals.css'
 import { Toaster } from '@workspace/ui/components/ui/sonner'
+
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -27,7 +39,7 @@ export const metadata: Metadata = {
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <AppProvider>
           {children}

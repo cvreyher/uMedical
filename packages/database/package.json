@@ -23,11 +23,11 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
+    "build": "tsc -b tsconfig.schemas.json",
+    "dev": "tsc -b tsconfig.schemas.json --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc -p tsconfig.schemas.json --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",

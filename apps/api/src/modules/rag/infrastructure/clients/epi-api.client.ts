@@ -278,7 +278,7 @@ export class EpiApiClient {
     const response = await fetch(url, {
       headers: {
         Accept: 'application/fhir+json',
-        'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
+        'User-Agent': 'uMedical/1.0 (+https://umedical.store; info@umedical.store)',
       },
     })
 

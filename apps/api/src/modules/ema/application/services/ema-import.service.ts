@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common'
 import {
   medicinalProducts,
+  medicinalProductsExtended,
   substances,
   companies,
   productSubstances,
@@ -127,20 +128,37 @@ export class EmaImportService {
     // 2. Upsert substance(s)
     const substanceIds = await this.upsertSubstances(raw.active_substance, result)
 
-    // 3. Upsert product
-    const productId = await this.upsertProduct(raw, result)
+    // 3. Upsert product (legacy phase-1 table)
+    await this.upsertProduct(raw, result)
 
-    // 4. Link product to company
-    if (companyId && productId) {
-      await this.linkProductCompany(productId, companyId)
+    // 4./5. Link company/substances via the EXTENDED product table -
+    // product_companies/product_substances reference medicinal_products_extended,
+    // which is the authoritative table used by the API. If the extended product
+    // does not exist yet (extended import not run), skip linking.
+    const extendedProductId = await this.resolveExtendedProductId(this.slugify(raw.name_of_medicine))
+    if (!extendedProductId) {
+      this.logger.debug(
+        `Skipping links for "${raw.name_of_medicine}": no extended product found (run import/extended first)`,
+      )
+      return
     }
 
-    // 5. Link product to substances
-    if (productId) {
-      for (const substanceId of substanceIds) {
-        await this.linkProductSubstance(productId, substanceId)
-      }
+    if (companyId) {
+      await this.linkProductCompany(extendedProductId, companyId)
     }
+
+    for (const substanceId of substanceIds) {
+      await this.linkProductSubstance(extendedProductId, substanceId)
+    }
+  }
+
+  private async resolveExtendedProductId(slug: string): Promise<number | null> {
+    const [row] = await this.db
+      .select({ id: medicinalProductsExtended.id })
+      .from(medicinalProductsExtended)
+      .where(eq(medicinalProductsExtended.slug, slug))
+      .limit(1)
+    return row?.id ?? null
   }
 
   private async upsertCompany(name: string, result: ImportResult): Promise<number | null> {

@@ -43,6 +43,8 @@ import type { NestModule, MiddlewareConsumer } from '@nestjs/common'
       isGlobal: true, // Make ConfigService available app-wide
       validate: validateEnv, // Validate env vars with Zod
       cache: true, // Cache env vars for performance
+      // Env lives in the monorepo root .env; a local .env can still override
+      envFilePath: ['.env', '../../.env'],
     }),
     // CLS module: request context management (Request ID, tracing, etc.)
     ClsModule.forRoot(createClsConfig()),

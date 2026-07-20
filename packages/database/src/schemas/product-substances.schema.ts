@@ -1,17 +1,18 @@
 import { pgTable, integer, boolean, primaryKey } from 'drizzle-orm/pg-core'
-import { medicinalProducts } from './medicinal-products.schema.js'
+import { medicinalProductsExtended } from './medicinal-products-extended.schema.js'
 import { substances } from './substances.schema.js'
 
 /**
  * Junction table: medicinal products <-> substances (n:m)
- * Phase 1: Links products to their active substances
+ * productId references medicinal_products_extended (the authoritative product
+ * table used by the API/web) - NOT the legacy phase-1 medicinal_products table.
  */
 export const productSubstances = pgTable(
   'product_substances',
   {
     productId: integer('product_id')
       .notNull()
-      .references(() => medicinalProducts.id, { onDelete: 'cascade' }),
+      .references(() => medicinalProductsExtended.id, { onDelete: 'cascade' }),
     substanceId: integer('substance_id')
       .notNull()
       .references(() => substances.id, { onDelete: 'cascade' }),

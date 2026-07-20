@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Lint, Typecheck, Build & Test
+    runs-on: ubuntu-latest
+    env:
+      # Dummy values so builds/tests run without real infrastructure
+      API_UPSTREAM_BASE_URL: http://localhost:3000
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/proxy
+      LIVE_FETCH_ENABLED: 'false'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        # version is read from the "packageManager" field in package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm check-types
+
+      - name: Build
+        run: pnpm build
+
+      - name: API unit tests
+        run: pnpm --filter api test
+
+      - name: Web unit tests
+        run: pnpm --filter web test:unit

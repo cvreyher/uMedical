@@ -233,13 +233,21 @@ export async function setupSwagger(app: INestApplication): Promise<void> {
     .setTitle(swaggerConfig.title)
     .setDescription(swaggerConfig.description)
     .setVersion(swaggerConfig.version)
-    .setContact('uMedical', 'https://github.com/cvreyher/uMedical', '')
+    .setContact('uMedical', 'https://umedical.store', 'info@umedical.store')
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
+    .addApiKey(
+      {
+        type: 'apiKey',
+        name: 'x-api-key',
+        in: 'header',
+        description: 'Admin API key (ADMIN_API_KEY) for admin endpoints',
+      },
+      'admin-api-key',
+    )
     .addServer('http://localhost:3001', 'Local Development')
-    // TODO: replace with the real domains once decided
-    .addServer('https://api.dev.umedical.example', 'Development')
+    .addServer('https://api.dev.umedical.store', 'Development')
     .addServer('http://localhost:3000', 'Development')
-    .addServer('https://api.umedical.example', 'Production')
+    .addServer('https://api.umedical.store', 'Production')
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',

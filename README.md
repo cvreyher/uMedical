@@ -100,14 +100,15 @@ pnpm install
 
 ### 2. Configure Environment Variables
 
+There is a **single `.env` at the repo root** shared by all apps and packages
+(API via NestJS ConfigModule, web via next.config, database via drizzle/scripts):
+
 ```bash
-cp apps/api/.env.example apps/api/.env
-cp apps/web/.env.example apps/web/.env
-cp packages/database/.env.example packages/database/.env
+cp .env.example .env
 ```
 
 The defaults work out of the box with the Docker infrastructure below. Note
-`LIVE_FETCH_ENABLED=false` in `apps/api/.env` — see [Live data vs. seeded data](#live-data-vs-seeded-data).
+`LIVE_FETCH_ENABLED=false` — see [Live data vs. seeded data](#live-data-vs-seeded-data).
 
 ### 3. Start Infrastructure (Docker)
 
@@ -156,7 +157,7 @@ pnpm dev
 The API has background cron jobs that poll external services (EMA, FDA, MHRA,
 BfArM, Swissmedic feeds; EMA document downloads; OpenAI embeddings). Hitting
 those constantly during development can get you **rate-limited**, so they are
-controlled by a single flag in `apps/api/.env`:
+controlled by a single flag in the root `.env`:
 
 ```bash
 LIVE_FETCH_ENABLED=false   # default for local dev: no background fetching, use seeded data

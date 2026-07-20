@@ -5,7 +5,7 @@
  *
  * Fills the local database with realistic sample data so the website can be
  * designed and developed WITHOUT hitting the live EMA/FDA/MHRA APIs
- * (see LIVE_FETCH_ENABLED in apps/api/.env).
+ * (see LIVE_FETCH_ENABLED in the root .env).
  *
  * Idempotent: safe to run multiple times (upserts by slug, seed-tagged
  * timeline events are replaced on each run).
@@ -20,7 +20,6 @@ import pg from 'pg'
 
 import {
   companies,
-  medicinalProducts,
   medicinalProductsExtended,
   productCompanies,
   productSubstances,
@@ -30,7 +29,8 @@ import {
   timelineEvents,
 } from '../src/schemas/index.js'
 
-config()
+// Env lives in the monorepo root .env; a package-local .env can still override
+config({ path: ['.env', '../../.env'], quiet: true })
 
 const SEED_SOURCE = 'seed_dev'
 
@@ -286,28 +286,9 @@ async function seed() {
   const productIdBySlug = new Map(productRows.map((p) => [p.slug, p.id]))
   console.log(`  ✓ medicinal products extended (${productData.length})`)
 
-  // --- Phase-1 products + join tables (product <-> substance/company) ---
-  await db
-    .insert(medicinalProducts)
-    .values(
-      productData.map((p) => ({
-        slug: p.slug,
-        name: p.name,
-        emaNumber: p.emaNumber,
-        status: p.medicineStatus.toLowerCase(),
-        authorizationDate: p.authorisationDate,
-        emaUrl: `https://www.ema.europa.eu/en/medicines/human/EPAR/${p.slug}`,
-        therapeuticArea: p.therapeuticAreaMesh,
-        conditionIndication: p.therapeuticIndication,
-        atcCode: p.atcCode,
-      })),
-    )
-    .onConflictDoNothing()
-  const phase1Rows = await db.select().from(medicinalProducts)
-  const phase1IdBySlug = new Map(phase1Rows.map((p) => [p.slug, p.id]))
-
+  // --- Join tables (product <-> substance/company, extended product IDs) ---
   for (const p of productData) {
-    const productId = phase1IdBySlug.get(p.slug)
+    const productId = productIdBySlug.get(p.slug)
     if (!productId) continue
 
     const companyId = companyIdBySlug.get(p.companySlug)
@@ -521,7 +502,7 @@ async function seed() {
     .from(medicinalProductsExtended)
     .where(inArray(medicinalProductsExtended.slug, seededSlugs))
   console.log(`\n✅ Done. ${seeded.length}/${seededSlugs.length} sample products available.`)
-  console.log('   Tip: keep LIVE_FETCH_ENABLED=false in apps/api/.env to work offline with this data.')
+  console.log('   Tip: keep LIVE_FETCH_ENABLED=false in the root .env to work offline with this data.')
 
   await pool.end()
 }

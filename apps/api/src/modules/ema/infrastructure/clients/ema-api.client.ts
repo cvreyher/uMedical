@@ -124,7 +124,7 @@ export class EmaApiClient {
     const response = await fetch(this.EMA_MEDICINES_URL, {
       headers: {
         Accept: 'application/json',
-        'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
+        'User-Agent': 'uMedical/1.0 (+https://umedical.store; info@umedical.store)',
       },
     })
 
@@ -149,7 +149,7 @@ export class EmaApiClient {
     const response = await fetch(this.EMA_SHORTAGES_URL, {
       headers: {
         Accept: 'application/json',
-        'User-Agent': 'uMedical/1.0 (+https://github.com/cvreyher/uMedical)',
+        'User-Agent': 'uMedical/1.0 (+https://umedical.store; info@umedical.store)',
       },
     })
 

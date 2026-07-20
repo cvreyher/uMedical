@@ -8,11 +8,13 @@ import {
   NotFoundException,
   HttpCode,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/swagger'
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiSecurity } from '@nestjs/swagger'
 import { pvigilanceFeedSources, pvigilanceFeedLogs } from '@workspace/database'
 import { eq, desc, count, and, gte, sql } from 'drizzle-orm'
 
+import { ApiKeyGuard } from '@/app/guards/api-key.guard'
 import { DB_TOKEN } from '@/shared-kernel/infrastructure/db/db.port'
 import { FeedSchedulerService } from '../../application/services/feed-scheduler.service'
 
@@ -24,6 +26,8 @@ import type { DrizzleDb } from '@/shared-kernel/infrastructure/db/db.port'
  * Administrative endpoints for managing feed sources.
  */
 @ApiTags('Admin - Pvigilance Feeds')
+@ApiSecurity('admin-api-key')
+@UseGuards(ApiKeyGuard)
 @Controller('admin/pvigilance/feeds')
 export class PvigilanceFeedsAdminController {
   constructor(
