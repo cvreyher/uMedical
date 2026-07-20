@@ -30,6 +30,10 @@ function ErrorState({ message }: { message?: string }) {
   )
 }
 
+// Render per request so the data always comes live from the API (our database)
+// instead of being frozen into static HTML at build time.
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Alle Wirkstoffe',
   description: 'Durchsuchen Sie alle Wirkstoffe (INN) in EU-zugelassenen Medikamenten. Finden Sie Informationen zu aktiven Substanzen und zugehörigen Arzneimitteln.',

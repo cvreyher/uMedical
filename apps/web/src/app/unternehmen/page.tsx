@@ -30,6 +30,10 @@ function ErrorState({ message }: { message?: string }) {
   )
 }
 
+// Render per request so the data always comes live from the API (our database)
+// instead of being frozen into static HTML at build time.
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Alle Unternehmen',
   description: 'Durchsuchen Sie alle Pharmaunternehmen mit EU-zugelassenen Medikamenten. Finden Sie Zulassungsinhaber, Hersteller und deren Arzneimittel.',
