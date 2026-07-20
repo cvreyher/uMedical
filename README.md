@@ -202,4 +202,6 @@ pnpm --filter web test:e2e       # Web e2e tests (Playwright)
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+Copyright © 2026 **von Reyher Media UG (haftungsbeschränkt)**. All rights reserved.
+
+This project is **source-available**, not open source: you may view the code, run it locally for private, non-commercial evaluation, and contribute — but **commercial use, self-hosting, and offering it as a service are not permitted** without written permission. See the [LICENSE](./LICENSE) file for the full terms and [THIRD-PARTY-NOTICES](./THIRD-PARTY-NOTICES) for attribution of the original MIT-licensed boilerplate.

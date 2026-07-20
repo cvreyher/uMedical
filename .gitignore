@@ -84,3 +84,6 @@ playwright/.cache/
 storybook-static
 
 .obsidian
+
+# Claude Code worktrees
+.claude/worktrees/

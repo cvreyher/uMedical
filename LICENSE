@@ -1,21 +1,83 @@
-MIT License
+uMedical Source-Available License
+Version 1.0, July 2026
 
-Copyright (c) 2025 xiu
+Copyright (c) 2026 von Reyher Media UG (haftungsbeschränkt). All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This is a source-available license, not an open-source license as defined by
+the Open Source Initiative. The source code is made publicly viewable for
+transparency, education, and community contribution — not for reuse or
+operation by third parties.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. OWNERSHIP
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   The software in this repository (the "Software"), including all source
+   code, documentation, and associated materials, is and remains the
+   exclusive property of von Reyher Media UG (haftungsbeschränkt)
+   (the "Licensor"), except for the third-party components listed in
+   Section 6.
+
+2. PERMITTED USE
+
+   Subject to the restrictions in Section 3, you are granted a limited,
+   non-exclusive, non-transferable, revocable license to:
+
+   a. view and study the source code;
+   b. clone the repository and run the Software locally, solely for
+      private, non-commercial evaluation, testing, and development;
+   c. submit contributions (e.g. pull requests) to the official
+      repository.
+
+3. RESTRICTIONS
+
+   Except as expressly permitted in Section 2, you may NOT:
+
+   a. use the Software, or any part of it, for any commercial purpose,
+      including selling, licensing, or offering it (or a service based on
+      it) for a fee or other consideration;
+   b. host, deploy, or operate the Software, or any derivative of it, for
+      yourself or for others — whether publicly accessible or internal,
+      whether free of charge or paid (no self-hosting);
+   c. offer the Software as a hosted, managed, or "as a service" offering;
+   d. redistribute, sublicense, sell, rent, or lease the Software or
+      derivative works of it;
+   e. remove or alter copyright, license, or attribution notices.
+
+   Any use not expressly permitted by this license requires prior written
+   permission from the Licensor. Contact: von Reyher Media UG
+   (haftungsbeschränkt).
+
+4. CONTRIBUTIONS
+
+   By submitting a contribution to this repository, you grant the Licensor
+   a perpetual, worldwide, irrevocable, royalty-free license to use,
+   modify, relicense, and commercially exploit your contribution as part
+   of the Software.
+
+5. TERMINATION
+
+   This license terminates automatically if you violate any of its terms.
+   Upon termination, you must cease all use of the Software and destroy
+   all copies in your possession.
+
+6. THIRD-PARTY COMPONENTS
+
+   This project was originally derived from the oNo500/nestjs-boilerplate,
+   which is licensed under the MIT License, Copyright (c) 2025 xiu. The
+   original MIT notice is preserved in THIRD-PARTY-NOTICES for the
+   portions that remain from that boilerplate. All other dependencies
+   retain their respective licenses.
+
+7. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
+   OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+   OTHER DEALINGS IN THE SOFTWARE.
+
+8. NO MEDICAL ADVICE
+
+   The Software processes pharmaceutical and pharmacovigilance data for
+   informational purposes only. It does not constitute medical advice.

@@ -1,6 +1,7 @@
 {
   "name": "umedical",
   "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
